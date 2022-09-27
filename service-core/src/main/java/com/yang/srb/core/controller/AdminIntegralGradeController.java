@@ -99,6 +99,7 @@ public class AdminIntegralGradeController {
     @GetMapping("/list")
     public R listAll(){
 
+
         log.info("hi this is log info");
         log.error("hi this is log error");
         log.warn("hi this is log warn");
