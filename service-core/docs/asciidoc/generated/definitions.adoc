@@ -1,0 +1,52 @@
+
+[[_definitions]]
+== 定义
+
+[[_5fa22c167cb84f1c7a943bc9670829cd]]
+=== IntegralGrade对象
+积分等级表
+
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|名称|说明|类型
+|**borrowAmount** +
+__可选__|借款额度 +
+**样例** : `0.0`|number
+|**createTime** +
+__可选__|创建时间 +
+**样例** : `"2022-07-11 15:00:00"`|string (date-time)
+|**deleted** +
+__可选__|逻辑删除(1:已删除，0:未删除) +
+**样例** : `true`|boolean
+|**id** +
+__可选__|编号 +
+**样例** : `0`|integer (int64)
+|**integralEnd** +
+__可选__|积分区间结束 +
+**样例** : `0`|integer (int32)
+|**integralStart** +
+__可选__|积分区间开始 +
+**样例** : `0`|integer (int32)
+|**updateTime** +
+__可选__|更新时间 +
+**样例** : `"2022-07-11 15:00:00"`|string (date-time)
+|===
+
+
+[[_r]]
+=== R
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|名称|说明|类型
+|**code** +
+__可选__|**样例** : `0`|integer (int32)
+|**data** +
+__可选__|**样例** : `"object"`|object
+|**message** +
+__可选__|**样例** : `"string"`|string
+|===
+
+
+

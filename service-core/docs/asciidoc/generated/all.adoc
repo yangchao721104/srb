@@ -1,0 +1,406 @@
+= 尚融宝后台管理系统-API文档
+
+
+[[_overview]]
+== 概览
+本文档描述了尚融宝后台管理系统接口
+
+
+=== 版本信息
+[%hardbreaks]
+__版本__ : 1.0
+
+
+=== 联系方式
+[%hardbreaks]
+__名字__ : Helen
+__邮箱__ : 55317332@qq.com
+
+
+=== URI scheme
+[%hardbreaks]
+__域名__ : localhost:8110
+__基础路径__ : /
+
+
+=== 标签
+
+* 积分等级管理 : Admin Integral Grade Controller
+
+
+
+
+[[_paths]]
+== 资源
+
+[[_f861e730900677635dcac1d4c3bfc159]]
+=== 积分等级管理
+Admin Integral Grade Controller
+
+
+[[_getbyidusingget]]
+==== 根据id获取积分等级
+....
+GET /admin/core/integralGrade/get/{id}
+....
+
+
+===== 参数
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|类型|名称|说明|类型
+|**Path**|**id** +
+__必填__|数据id|integer (int64)
+|===
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|<<_r,R>>
+|**401**|Unauthorized|无内容
+|**403**|Forbidden|无内容
+|**404**|Not Found|无内容
+|===
+
+
+===== 生成
+
+* `*/*`
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/admin/core/integralGrade/get/1
+----
+
+
+===== HTTP响应示例
+
+====== 响应 200
+[source,json]
+----
+{
+  "code" : 0,
+  "data" : "object",
+  "message" : "string"
+}
+----
+
+
+[[_listallusingget]]
+==== 积分等级列表
+....
+GET /admin/core/integralGrade/list
+....
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|<<_r,R>>
+|**401**|Unauthorized|无内容
+|**403**|Forbidden|无内容
+|**404**|Not Found|无内容
+|===
+
+
+===== 生成
+
+* `*/*`
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/admin/core/integralGrade/list
+----
+
+
+===== HTTP响应示例
+
+====== 响应 200
+[source,json]
+----
+{
+  "code" : 0,
+  "data" : "object",
+  "message" : "string"
+}
+----
+
+
+[[_removebyidusingdelete]]
+==== 根据id删除数据记录
+....
+DELETE /admin/core/integralGrade/remove/{id}
+....
+
+
+===== 说明
+逻辑删除数据记录
+
+
+===== 参数
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|类型|名称|说明|类型
+|**Path**|**id** +
+__必填__|数据id|integer (int64)
+|===
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|<<_r,R>>
+|**204**|No Content|无内容
+|**401**|Unauthorized|无内容
+|**403**|Forbidden|无内容
+|===
+
+
+===== 生成
+
+* `*/*`
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/admin/core/integralGrade/remove/100
+----
+
+
+===== HTTP响应示例
+
+====== 响应 200
+[source,json]
+----
+{
+  "code" : 0,
+  "data" : "object",
+  "message" : "string"
+}
+----
+
+
+[[_saveusingput]]
+==== 新增积分等级
+....
+PUT /admin/core/integralGrade/save
+....
+
+
+===== 参数
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|类型|名称|说明|类型
+|**Body**|**integralGrade** +
+__必填__|积分等级对象|<<_5fa22c167cb84f1c7a943bc9670829cd,IntegralGrade对象>>
+|===
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|<<_r,R>>
+|**201**|Created|无内容
+|**401**|Unauthorized|无内容
+|**403**|Forbidden|无内容
+|**404**|Not Found|无内容
+|===
+
+
+===== 消耗
+
+* `application/json`
+
+
+===== 生成
+
+* `*/*`
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/admin/core/integralGrade/save
+----
+
+
+====== 请求 body
+[source,json]
+----
+{
+  "borrowAmount" : 0.0,
+  "createTime" : "2022-07-11 15:00:00",
+  "deleted" : true,
+  "id" : 0,
+  "integralEnd" : 0,
+  "integralStart" : 0,
+  "updateTime" : "2022-07-11 15:00:00"
+}
+----
+
+
+===== HTTP响应示例
+
+====== 响应 200
+[source,json]
+----
+{
+  "code" : 0,
+  "data" : "object",
+  "message" : "string"
+}
+----
+
+
+[[_updatebyidusingpost]]
+==== 更新积分等级
+....
+POST /admin/core/integralGrade/update
+....
+
+
+===== 参数
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|类型|名称|说明|类型
+|**Body**|**integralGrade** +
+__必填__|积分等级对象|<<_5fa22c167cb84f1c7a943bc9670829cd,IntegralGrade对象>>
+|===
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|<<_r,R>>
+|**201**|Created|无内容
+|**401**|Unauthorized|无内容
+|**403**|Forbidden|无内容
+|**404**|Not Found|无内容
+|===
+
+
+===== 消耗
+
+* `application/json`
+
+
+===== 生成
+
+* `*/*`
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/admin/core/integralGrade/update
+----
+
+
+====== 请求 body
+[source,json]
+----
+{
+  "borrowAmount" : 0.0,
+  "createTime" : "2022-07-11 15:00:00",
+  "deleted" : true,
+  "id" : 0,
+  "integralEnd" : 0,
+  "integralStart" : 0,
+  "updateTime" : "2022-07-11 15:00:00"
+}
+----
+
+
+===== HTTP响应示例
+
+====== 响应 200
+[source,json]
+----
+{
+  "code" : 0,
+  "data" : "object",
+  "message" : "string"
+}
+----
+
+
+
+
+[[_definitions]]
+== 定义
+
+[[_5fa22c167cb84f1c7a943bc9670829cd]]
+=== IntegralGrade对象
+积分等级表
+
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|名称|说明|类型
+|**borrowAmount** +
+__可选__|借款额度 +
+**样例** : `0.0`|number
+|**createTime** +
+__可选__|创建时间 +
+**样例** : `"2022-07-11 15:00:00"`|string (date-time)
+|**deleted** +
+__可选__|逻辑删除(1:已删除，0:未删除) +
+**样例** : `true`|boolean
+|**id** +
+__可选__|编号 +
+**样例** : `0`|integer (int64)
+|**integralEnd** +
+__可选__|积分区间结束 +
+**样例** : `0`|integer (int32)
+|**integralStart** +
+__可选__|积分区间开始 +
+**样例** : `0`|integer (int32)
+|**updateTime** +
+__可选__|更新时间 +
+**样例** : `"2022-07-11 15:00:00"`|string (date-time)
+|===
+
+
+[[_r]]
+=== R
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|名称|说明|类型
+|**code** +
+__可选__|**样例** : `0`|integer (int32)
+|**data** +
+__可选__|**样例** : `"object"`|object
+|**message** +
+__可选__|**样例** : `"string"`|string
+|===
+
+
+
+
+

@@ -1,0 +1,31 @@
+= 尚融宝后台管理系统-API文档
+
+
+[[_overview]]
+== 概览
+本文档描述了尚融宝后台管理系统接口
+
+
+=== 版本信息
+[%hardbreaks]
+__版本__ : 1.0
+
+
+=== 联系方式
+[%hardbreaks]
+__名字__ : Helen
+__邮箱__ : 55317332@qq.com
+
+
+=== URI scheme
+[%hardbreaks]
+__域名__ : localhost:8110
+__基础路径__ : /
+
+
+=== 标签
+
+* 积分等级管理 : Admin Integral Grade Controller
+
+
+

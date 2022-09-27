@@ -1,0 +1,18 @@
+package designmodel.factory.before;
+
+/**
+ * 咖啡类
+ * @author yang
+ * @date 2022/8/7 13:28
+ */
+public abstract class Coffee {
+    public abstract String getName();
+
+    public void addSugar(){
+        System.out.println("加糖");
+    }
+
+    public void addMilk(){
+        System.out.println("加奶");
+    }
+}

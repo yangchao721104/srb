@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="http://www.padual.com/java/logback.xsd"
+        debug="false" scan="true" scanPeriod="60 second">
+
+    <springProperty name="PROJECT" scope="context" source="spring.application.name"/>
+    <property name="ROOT" value="logs"/>
+    <property name="FILESIZE" value="500MB"/>
+
+    <property name="MAXHISTORY" value="15"/>
+    <property name="ELK_MAXHISTORY" value="2"/>
+    <property name="IFSPFILE_SIZECAP" value="3GB"/>
+    <property name="ATFFILE_SIZECAP" value="1GB"/>
+    <property name="BIGDATA_LOG_DIR" value="/prms/applog/trans"/>
+
+    <!-- 控制台打印 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder charset="utf-8">
+            <pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss SSS} [%thread] %logger{36} %line - %m%n
+            </pattern>
+        </encoder>
+    </appender>
+    <!-- ERROR 输入到文件，按日期和文件大小 -->
+    <appender name="ifspFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder charset="utf-8" class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+            <layout class="org.apache.skywalking.apm.toolkit.log.logback.v1.x.TraceIdPatternLogbackLayout">
+                <Pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss SSS} [%tid] [%thread] %logger{36} %line - %m%n</Pattern>
+            </layout>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${ROOT}/${PROJECT}.%d.%i.log</fileNamePattern>
+            <maxHistory>${MAXHISTORY}</maxHistory>
+            <totalSizeCap>${IFSPFILE_SIZECAP}</totalSizeCap>
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>${FILESIZE}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+    </appender>
+
+    <appender name="ELK" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder charset="utf-8">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss SSS} [%-5level] %logger{36} [%thread] %m%n
+            </pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${ROOT}/${PROJECT}_ELK_%d{}_%i.log</fileNamePattern>
+            <maxHistory>${MAXHISTORY}</maxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>${FILESIZE}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+    </appender>
+
+    <appender name="BigData" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <prudent>true</prudent>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${BIGDATA_LOG_DIR}/IFSP_TRANS_${PROJECT}_%d{yyyy-MM-dd}_%i.log</fileNamePattern>
+            <maxHistory>1</maxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>500MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>%m%n</Pattern>
+        </layout>
+    </appender>
+
+    <appender name="biz" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <prudent>true</prudent>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${ROOT}/monitorLog/biz-${PROJECT}-service_%d{yyyy-MM-dd}_%i.log</fileNamePattern>
+            <maxHistory>14</maxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>500MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>%m%n</Pattern>
+        </layout>
+    </appender>
+
+
+    <appender name="Exception" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder charset="utf-8">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss,SSS} [%-5level] %logger{36} [%thread] %m%n
+            </pattern>
+        </encoder>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${ROOT}/${PROJECT}_Exception_%d{}_%i.log</fileNamePattern>
+            <maxHistory>${MAXHISTORY}</maxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>${FILESIZE}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+    </appender>
+
+    <logger name="ELKLogger" level="DEBUG" additivity="false">
+        <appender-ref ref="ELK"/>
+    </logger>
+
+    <logger name="cn.bos.prms.plat.common.component.bigdata" level="INFO" additivity="false">
+        <appender-ref ref="BigData"/>
+    </logger>
+
+    <logger name="com.dcits.galaxy.dal.mybatis.merger.MergeExecutor" level="OFF" additivity="false">
+        <appender-ref ref="ifspFile"/>
+    </logger>
+    <logger name="cn.bosc.prms" level="INFO" additivity="false">
+        <appender-ref ref="ifspFile"/>
+    </logger>
+    <logger name="cn.bos.ifsp" level="INFO" additivity="false">
+        <appender-ref ref="ifspFile"/>
+    </logger>
+
+    <logger name="ExceptionLog" level="ERROR" additivity="false">
+        <appender-ref ref="Exception"/>
+    </logger>
+
+    <logger name="cn.bos.prms.plat.common.component.bigdata" level="INFO" additivity="false">
+        <appender-ref ref="BigData" />
+    </logger>
+    <!-- Logger 根目录 -->
+    <root level="INFO">
+        <appender-ref ref="ifspFile"/>
+        <appender-ref ref="STDOUT"/>
+    </root>
+    <!--此配置去除宇信框架里面的打印sql日志功能，若需要打印sql就删掉下面的标签-->
+    <logger name="cn.com.yusys.yusp.commons.mapper.log.SqlLogger">
+        <level value="WARN"/>
+    </logger>
+</configuration>
+
+
