@@ -59,7 +59,7 @@ public class AdminIntegralGradeController {
     }
 
     @ApiOperation(value = "新增积分等级")
-    @PutMapping ("/save")
+    @PostMapping ("/save")
     public R save(
                   @ApiParam(value = "积分等级对象",required = true)
                   @RequestBody IntegralGrade integralGrade){
