@@ -8,6 +8,7 @@
         <module>service-base</module>
         <module>service-core</module>
         <module>Demo</module>
+        <module>alibaba-easyexcel</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
