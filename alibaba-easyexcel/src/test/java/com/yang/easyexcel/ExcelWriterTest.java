@@ -102,7 +102,7 @@ public class ExcelWriterTest {
 
     private List<ExcelStudentDto> data() {
         List<ExcelStudentDto> list = new ArrayList();
-        for (int i = 0; i < 65535; i++) {
+        for (int i = 0; i < 10; i++) {
             ExcelStudentDto data = new ExcelStudentDto();
             data.setName("字符串" + i);
             data.setBirthday(new Date());

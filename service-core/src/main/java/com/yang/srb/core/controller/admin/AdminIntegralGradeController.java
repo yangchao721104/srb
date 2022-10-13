@@ -1,4 +1,4 @@
-package com.yang.srb.core.controller;
+package com.yang.srb.core.controller.admin;
 
 import com.yang.common.exception.Assert;
 import com.yang.common.result.R;
