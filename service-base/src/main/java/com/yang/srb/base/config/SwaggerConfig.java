@@ -1,4 +1,4 @@
-package com.yang.srb.base;
+package com.yang.srb.base.config;
 
 import com.google.common.base.Predicates;
 import org.springframework.context.annotation.Bean;
@@ -17,7 +17,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  */
 @Configuration
 @EnableSwagger2
-public class config {
+public class SwaggerConfig {
 
     @Bean
     public Docket webApiConfig() {

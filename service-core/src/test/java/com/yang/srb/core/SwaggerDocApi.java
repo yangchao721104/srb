@@ -1,11 +1,13 @@
 package com.yang.srb.core;
 
+import com.yang.srb.core.pojo.entity.Borrower;
 import io.github.swagger2markup.GroupBy;
 import io.github.swagger2markup.Language;
 import io.github.swagger2markup.Swagger2MarkupConfig;
 import io.github.swagger2markup.Swagger2MarkupConverter;
 import io.github.swagger2markup.builder.Swagger2MarkupConfigBuilder;
 import io.github.swagger2markup.markup.builder.MarkupLanguage;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,7 +22,19 @@ import java.nio.file.Paths;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+@Slf4j
 public class SwaggerDocApi {
+
+
+
+    @Test
+    public void Test11(){
+        Borrower borrower = new Borrower();
+        borrower.setAge(11);
+        borrower.setContactsMobile("111111111");
+        log.info("postDestroyTxHashDto{}",borrower);
+        log.info("postDestroyTxHashDto{}",borrower.toString());
+    }
 
     /**
      * 生成AsciiDocs格式文档

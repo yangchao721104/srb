@@ -1,4 +1,4 @@
-package com.yang.srb.core.controller;
+package com.yang.srb.core.controller.admin;
 
 import com.yang.common.exception.Assert;
 import com.yang.common.result.R;
@@ -33,7 +33,7 @@ public class AdminIntegralGradeController {
     private IntegralGradeService integralGradeService;
 
     @ApiOperation(value = "更新积分等级")
-    @PostMapping("/update")
+    @PutMapping("/update")
     public R updateById(
                 @ApiParam(value = "积分等级对象",required = true)
                 @RequestBody IntegralGrade integralGrade){
@@ -59,7 +59,7 @@ public class AdminIntegralGradeController {
     }
 
     @ApiOperation(value = "新增积分等级")
-    @PutMapping ("/save")
+    @PostMapping ("/save")
     public R save(
                   @ApiParam(value = "积分等级对象",required = true)
                   @RequestBody IntegralGrade integralGrade){
