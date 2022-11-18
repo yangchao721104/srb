@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
  */
 @Data
 @NoArgsConstructor
-public class BusinessException extends RuntimeException {
+public class  BusinessException extends RuntimeException {
 
     //错误码
     private Integer code;
