@@ -28,7 +28,7 @@ public class Test01 {
      */
     @Test
     public void toHexStr(String str) {
-
+        System.out.println("测试1");
     }
     /**
      * isBlank
