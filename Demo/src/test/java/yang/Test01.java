@@ -28,13 +28,27 @@ public class Test01 {
      */
     @Test
     public void toHexStr(String str) {
-        System.out.println("测试1");
-    }
 
+    }
+    /**
+     * isBlank
+     *
+     * @param value
+     * @return true: blank; false: not blank
+     */
+    private static boolean isBlank(String value) {
+        if (value == null || "".equals(value.trim())) {
+            return true;
+        }
+        return false;
+    }
 
     @Test
     public void test01() throws InterruptedException {
-        log.info("测试2");
+
+
+
+
 
     }
 
