@@ -27,6 +27,5 @@ public class IntegralGradeController {
         return "hello";
     }
 
-
 }
 

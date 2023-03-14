@@ -10,13 +10,17 @@ import com.yang.srb.core.pojo.entity.dto.ExcelDictDTO;
 import com.yang.srb.core.service.DictService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * <p>
@@ -29,6 +33,9 @@ import java.util.List;
 @Slf4j
 @Service
 public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements DictService {
+
+    @Autowired
+    private RedisTemplate redisTemplate;
 
     @Transactional(rollbackFor = {Exception.class})
     @Override
@@ -54,6 +61,15 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements Di
 
     @Override
     public List<Dict> listByParentId(Long parentId) {
+        try {
+            log.info("从redis服务器获取数据");
+            List<Dict> dictList2  = (List<Dict> )redisTemplate.opsForValue().get("srb:core:dictList"+parentId);
+            if (dictList2 !=null){
+                return dictList2;
+            }
+        } catch (Exception e) {
+            log.error("redis服务器异常" + ExceptionUtils.getStackTrace(e));
+        }
 
         QueryWrapper<Dict> dictQueryWrapper = new QueryWrapper<>();
         dictQueryWrapper.lambda().eq(Dict::getParentId,parentId);
@@ -64,12 +80,19 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements Di
             boolean hasChildren = this.hasChildren(dict.getId());
             dict.setHasChildren(hasChildren);
         });
+
+        try {
+            log.info("将数据存入redis");
+            redisTemplate.opsForValue().set("srb:core:dictList"+parentId,dictList,5, TimeUnit.MINUTES);
+        } catch (Exception e) {
+            log.info("redis服务器异常");
+        }
+
         return dictList;
     }
 
     /**
      * 判断当前id所在的节点是否有子节点
-     * @param idlistByParentId
      * @return
      */
     private boolean hasChildren(Long id){
