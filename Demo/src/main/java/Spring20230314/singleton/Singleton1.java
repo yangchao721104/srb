@@ -15,9 +15,27 @@ import DesignMode.Single.Lazy.Singleton;
  * 4、强调这是一个单例，可以用final修改
  */
 public class Singleton1 {
+    
+    //懒汉式
 
-    public static final Singleton1 INSTANCE = new Singleton1();
+//    public static final Singleton1 INSTANCE = new Singleton1();
+//    private Singleton1(){
+//    }
+
+    // 懒汉式
+
+    /**
+     * 在内部类被加载和初始化时，才创建INSTANCE实例对象
+     * 静态内部类不会自动随着外部类的加载和初始化而初始化，他要单独去创建和加载
+     * 因为是在内部类加载和初始化时，创建的，因为是线程安全的
+     */
     private Singleton1(){
 
+    }
+    private static class Inner{
+        private static final  Singleton1 INSTANCE = new Singleton1();
+    }
+    public static Singleton1 getInstance(){
+        return Inner.INSTANCE;
     }
 }
