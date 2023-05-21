@@ -45,8 +45,8 @@ public class ArrayListDemo {
         //Vector可以解决，加锁但是并发急剧下降
 //        List<String> list = new Vector<>();
         //解决2:
-//        List<Object> list = Collections.synchronizedList(new ArrayList<>());
-
+//        List<Object> list = Collections.synchronizedList(new ArrayList<>())
+        
         //解决3：
         CopyOnWriteArrayList<Object> list = new CopyOnWriteArrayList<>();
         //写时复制

@@ -10,5 +10,6 @@ public class Hello {
     public static void main(String[] args) throws InterruptedException {
         byte[] bytes = new byte[1024 * 1024 * 1024];
         Thread.sleep(500);
+        System.gc();
     }
 }
