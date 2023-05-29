@@ -29,4 +29,10 @@ public class RedisTemplateTests {
         //向数据库中存储string类型的键值对, 过期时间5分钟
         redisTemplate.opsForValue().set("dict", dict, 5, TimeUnit.MINUTES);
     }
+
+    @Test
+    public void getDict(){
+        Dict dict = (Dict) redisTemplate.opsForValue().get("dict");
+        System.out.println(dict);
+    }
 }

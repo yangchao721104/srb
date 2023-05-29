@@ -56,7 +56,7 @@ public class AdminDictController {
     @ApiOperation("Excel数据的导出")
     @GetMapping("/export")
     public void export(HttpServletResponse response){
-
+        log.info("zzzzzzzzzzzzzzzz");
         try {
             // 这里注意 有同学反应使用swagger 会导致各种问题，请直接用浏览器或者用postman
             response.setContentType("application/vnd.ms-excel");

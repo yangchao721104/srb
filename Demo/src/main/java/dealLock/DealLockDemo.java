@@ -4,6 +4,7 @@ import sun.misc.Lock;
 
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @author yang
@@ -14,6 +15,7 @@ import java.util.concurrent.TimeUnit;
  */
 
 class HoldLockThread implements Runnable{
+
 
     private String lockA;
     private String lockB;
