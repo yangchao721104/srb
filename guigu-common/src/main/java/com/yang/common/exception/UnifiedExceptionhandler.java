@@ -1,6 +1,5 @@
 package com.yang.common.exception;
 
-import com.yang.common.result.BusinessException;
 import com.yang.common.result.R;
 import com.yang.common.result.ResponseEnum;
 import lombok.extern.slf4j.Slf4j;
@@ -9,7 +8,6 @@ import org.springframework.beans.TypeMismatchException;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.http.converter.HttpMessageNotWritableException;
 import org.springframework.jdbc.BadSqlGrammarException;
-import org.springframework.stereotype.Component;
 import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
@@ -23,38 +21,26 @@ import org.springframework.web.context.request.async.AsyncRequestTimeoutExceptio
 import org.springframework.web.multipart.support.MissingServletRequestPartException;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
-/**
- * @author yang
- * @date 2022/7/18 15:38
- */
 @Slf4j
-@Component //spring容器自动管理
-@RestControllerAdvice //异常切面   //在controller层添加通知。如果使用@ControllerAdvice，则方法上需要添加@ResponseBody
-public class UnifiedExceptionHandler {
+@RestControllerAdvice
+public class UnifiedExceptionhandler {
 
-    /**
-     * 整体错误返回
-     * @param e
-     * @return
-     */
-    @ExceptionHandler(value = Exception.class)  //当controller中抛出Exception，则捕获
-    public R handleException(Exception e) {
-        log.error(e.getMessage(),e);
+    @ExceptionHandler(value = Exception.class)
+    public R handleException(Exception e){
+        log.error(e.getMessage(), e);
         return R.error();
     }
 
-
-    //org.springframework.jdbc.BadSqlGrammarException
-    //定义某种错误返回
-    @ExceptionHandler(value = BadSqlGrammarException.class)  //当controller中抛出Exception，则捕获
-    public R handleBadSqlGrammarException(BadSqlGrammarException e) {
-        log.error(e.getMessage(),e);
+    @ExceptionHandler(value = BadSqlGrammarException.class)
+    public R handleException(BadSqlGrammarException e){
+        log.error(e.getMessage(), e);
         return R.setResult(ResponseEnum.BAD_SQL_GRAMMAR_ERROR);
     }
 
+
     @ExceptionHandler(value = BusinessException.class)
-    public R handleException(BusinessException e) {
-        log.error(e.getMessage(),e);
+    public R handleException(BusinessException e){
+        log.error(e.getMessage(), e);
         return R.error().message(e.getMessage()).code(e.getCode());
     }
 

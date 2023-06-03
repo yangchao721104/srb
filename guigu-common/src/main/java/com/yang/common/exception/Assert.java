@@ -1,14 +1,9 @@
 package com.yang.common.exception;
 
-import com.yang.common.result.BusinessException;
 import com.yang.common.result.ResponseEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
 
-/**
- * @author yang
- * @date 2022/7/19 0:44
- */
 @Slf4j
 public class Assert {
 
@@ -92,4 +87,5 @@ public class Assert {
             throw new BusinessException(responseEnum);
         }
     }
+
 }
