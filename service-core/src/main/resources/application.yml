@@ -38,3 +38,7 @@ mybatis-plus: #mybatis
 logging:
   level:
     com.yang.srb.core.mapper: debug
+  pattern:
+    level: DEBUG
+
+

@@ -8,8 +8,10 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 /**
  * <p>
@@ -23,6 +25,10 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = false)
 @ApiModel(value="UserInfo对象", description="用户基本信息")
 public class UserInfo implements Serializable {
+
+    public static final Integer STATUS_NORMAL = 1;
+    public static final Integer STATUS_LOCKED = 0;
+    public static final String USER_AVATAR = "https://gulimall-yangchao.oss-cn-shanghai.aliyuncs.com/2022-01-13/1cfd061a-a64b-4e90-8177-6990daf58cda_huawei.png";
 
     private static final long serialVersionUID = 1L;
 
@@ -82,6 +88,5 @@ public class UserInfo implements Serializable {
     @TableField("is_deleted")
     @TableLogic
     private Boolean deleted;
-
 
 }

@@ -63,7 +63,7 @@
     </appender>
 
     <!-- 日志记录器  -->
-    <logger name="com.yang" level="INFO">
+    <logger name="com.yang" level="DEBUG">
         <appender-ref ref="CONSOLE" />
         <appender-ref ref="FILE" />
     </logger>

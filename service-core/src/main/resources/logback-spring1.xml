@@ -70,7 +70,7 @@
 
     <!-- 开发环境和测试环境 -->
     <springProfile name="dev,test">
-        <logger name="com.yang" level="DEBUG">
+        <logger name="com.yang" level="INFO">
             <appender-ref ref="CONSOLE" />
             <appender-ref ref="ROLLING_FILE" />
             <appender-ref ref="FILE" />

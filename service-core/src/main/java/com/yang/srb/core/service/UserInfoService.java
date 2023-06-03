@@ -2,6 +2,9 @@ package com.yang.srb.core.service;
 
 import com.yang.srb.core.pojo.entity.UserInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.yang.srb.core.pojo.entity.vo.LoginVo;
+import com.yang.srb.core.pojo.entity.vo.RegisterVo;
+import com.yang.srb.core.pojo.entity.vo.UserInfoVo;
 
 /**
  * <p>
@@ -13,4 +16,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface UserInfoService extends IService<UserInfo> {
 
+    void register(RegisterVo registerVo);
+
+    UserInfoVo login(LoginVo loginVo, String addr);
 }
