@@ -2,6 +2,8 @@ package com.yang.srb.core.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yang.common.exception.Assert;
 import com.yang.common.result.ResponseEnum;
 import com.yang.srb.base.util.JwtUtils;
@@ -11,19 +13,16 @@ import com.yang.srb.core.pojo.entity.UserAccount;
 import com.yang.srb.core.pojo.entity.UserInfo;
 import com.yang.srb.core.mapper.UserInfoMapper;
 import com.yang.srb.core.pojo.entity.UserLoginRecord;
+import com.yang.srb.core.pojo.entity.query.UserInfoQuery;
 import com.yang.srb.core.pojo.entity.vo.LoginVo;
 import com.yang.srb.core.pojo.entity.vo.RegisterVo;
 import com.yang.srb.core.pojo.entity.vo.UserInfoVo;
 import com.yang.srb.core.service.UserInfoService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.apache.commons.codec.digest.DigestUtils;
-import org.apache.commons.codec.digest.Md5Crypt;
-import org.springframework.beans.BeanUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
-import sun.security.provider.MD5;
-import sun.security.rsa.RSASignature;
 
 import javax.annotation.Resource;
 
@@ -51,7 +50,7 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
         LambdaQueryWrapper<UserInfo> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(StringUtils.isEmpty(registerVo.getMobile()),UserInfo::getMobile,registerVo.getMobile());
         Integer count = baseMapper.selectCount(queryWrapper);
-        Assert.isTrue(count == 0, ResponseEnum.MOBILE_EXIST_ERROR);
+        Assert.isTrue(count >= 1, ResponseEnum.MOBILE_EXIST_ERROR);
 
         UserInfo userInfo = new UserInfo();
         userInfo.setUserType(registerVo.getUserType());
@@ -111,5 +110,31 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
         userInfoVO.setUserType(userType);
 
         return userInfoVO;
+    }
+
+    @Override
+    public IPage<UserInfo> listPage(Page<UserInfo> pageParam, UserInfoQuery userInfoQuery) {
+
+        if (userInfoQuery ==null){
+            return baseMapper.selectPage(pageParam,null);
+        }
+
+        String mobile = userInfoQuery.getMobile();
+        Integer status = userInfoQuery.getStatus();
+        Integer userType = userInfoQuery.getUserType();
+
+        QueryWrapper<UserInfo> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq(StringUtils.isNotBlank(mobile),"mobile",mobile)
+                .eq(status != null,"status",status)
+                .eq(userType != null,"user_type",userType);
+        return baseMapper.selectPage(pageParam,queryWrapper);
+    }
+
+    @Override
+    public void lock(Long id, Integer status) {
+        UserInfo userInfo = new UserInfo();
+        userInfo.setId(id);
+        userInfo.setStatus(status);
+        baseMapper.updateById(userInfo);
     }
 }
