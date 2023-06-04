@@ -5,6 +5,7 @@ import com.yang.common.exception.Assert;
 import com.yang.common.result.R;
 import com.yang.common.result.ResponseEnum;
 import com.yang.common.util.RegexValidateUtils;
+import com.yang.srb.base.util.JwtUtils;
 import com.yang.srb.core.pojo.entity.vo.LoginVo;
 import com.yang.srb.core.pojo.entity.vo.RegisterVo;
 import com.yang.srb.core.pojo.entity.vo.UserInfoVo;
@@ -39,6 +40,20 @@ public class UserInfooController {
     private RedisTemplate redisTemplate;
     @Resource
     private UserInfoService userInfoService;
+
+    @ApiOperation("校验令牌")
+    @GetMapping("/checkToken")
+    public R checkToken(HttpServletRequest request){
+
+        String token = request.getHeader("token");
+        boolean checkToken = JwtUtils.checkToken(token);
+
+        if (checkToken){
+            return R.ok();
+        }else {
+            return R.setResult(ResponseEnum.LOGIN_AUTH_ERROR);
+        }
+    }
 
     @ApiOperation("会员登录")
     @PostMapping("/login")
