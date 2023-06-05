@@ -30,11 +30,11 @@ import javax.servlet.http.HttpServletRequest;
  * @since 2022-07-17
  */
 @Api(tags = "会员接口")
-@RestController
+@RestController("UserInfoController")
 @RequestMapping("/api/core/userInfo")
 @Slf4j
 //@CrossOrigin
-public class UserInfooController {
+public class UserInfoController {
 
     @Resource
     private RedisTemplate redisTemplate;
