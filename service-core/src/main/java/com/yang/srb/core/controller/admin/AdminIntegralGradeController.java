@@ -23,7 +23,7 @@ import java.util.List;
  */
 @Api(tags = "积分等级管理")
 //解决跨域
-@CrossOrigin
+//@CrossOrigin
 @RestController
 @RequestMapping("/admin/core/integralGrade")
 @Slf4j

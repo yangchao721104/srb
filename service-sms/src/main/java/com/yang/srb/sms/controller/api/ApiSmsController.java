@@ -6,6 +6,7 @@ import com.yang.common.result.R;
 import com.yang.common.result.ResponseEnum;
 import com.yang.common.util.RandomUtils;
 import com.yang.common.util.RegexValidateUtils;
+import com.yang.srb.sms.client.CoreUserInfoClient;
 import com.yang.srb.sms.service.SmsService;
 import com.yang.srb.sms.util.SmsProperties;
 import io.swagger.annotations.Api;
@@ -22,7 +23,7 @@ import java.util.concurrent.TimeUnit;
 @RestController
 @RequestMapping("/api/sms")
 @Api(tags = "短信管理")
-@CrossOrigin //跨域
+//@CrossOrigin //跨域
 @Slf4j
 public class ApiSmsController {
 
@@ -31,6 +32,9 @@ public class ApiSmsController {
 
     @Resource
     private RedisTemplate redisTemplate;
+
+    @Resource
+    private CoreUserInfoClient coreUserInfoClient;
 
     @ApiOperation("获取验证码")
     @GetMapping("/send/{mobile}")
@@ -42,6 +46,12 @@ public class ApiSmsController {
         Assert.notEmpty(mobile, ResponseEnum.MOBILE_NULL_ERROR);
         //是否是合法的手机号码
         Assert.isTrue(RegexValidateUtils.checkCellphone(mobile), ResponseEnum.MOBILE_ERROR);
+
+        //判断手机号是否被注册
+        boolean result =  coreUserInfoClient.checkMobile(mobile);
+        log.info("result = " + result);
+        Assert.isTrue(result ==false,ResponseEnum.MOBILE_EXIST_ERROR);
+
 
         String code = RandomUtils.getFourBitRandom();
         HashMap<String, Object> map = new HashMap<>();

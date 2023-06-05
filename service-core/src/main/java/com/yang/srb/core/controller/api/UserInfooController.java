@@ -33,13 +33,20 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 @RequestMapping("/api/core/userInfo")
 @Slf4j
-@CrossOrigin
+//@CrossOrigin
 public class UserInfooController {
 
     @Resource
     private RedisTemplate redisTemplate;
     @Resource
     private UserInfoService userInfoService;
+
+    @ApiOperation("校验手机号是否注册")
+    @GetMapping("/checkMobile/{mobile}")
+    public Boolean checkMobile(@PathVariable String mobile){
+        return userInfoService.checkMobile(mobile);
+
+    }
 
     @ApiOperation("校验令牌")
     @GetMapping("/checkToken")

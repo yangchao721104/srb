@@ -2,6 +2,9 @@ package com.yang.srb.core.service;
 
 import com.yang.srb.core.pojo.entity.UserBind;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.yang.srb.core.pojo.entity.vo.UserBindVo;
+
+import java.util.Map;
 
 /**
  * <p>
@@ -13,4 +16,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface UserBindService extends IService<UserBind> {
 
+    String commitBindUser(UserBindVo userBindVO, Long userId);
+
+    void notify(Map<String, Object> map);
 }

@@ -1,11 +1,28 @@
 server:
-  port: 8140 # 服务端口
+  port: 8130 # 服务端口
 
 spring:
   profiles:
     active: dev # 环境设置
   application:
     name: service-oss # 服务名
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848 #nacos服务地址
+
+    alicloud:
+      access-key: LTAI5tFKwSnzjPKw3BA4b6BZ
+      secret-key: KX87c8fYGFYsXEIW2YtR5FVgx3ANQ6
+      oss:
+        endpoint: oss-cn-shanghai.aliyuncs.com
+        bucket: gulimall-yangchao
+      sms:
+        host: https://jmsms.market.alicloudapi.com
+        path: /sms/send
+        templateId: M72CB42894
+        appcode: c37d6e583a624adb962dca9007cb67da
 
 aliyun:
   oss:
