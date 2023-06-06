@@ -4,10 +4,9 @@ package com.yang.srb.core.controller.admin;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yang.common.result.R;
-import com.yang.srb.base.util.JwtUtils;
 import com.yang.srb.core.pojo.entity.Borrower;
-import com.yang.srb.core.pojo.entity.vo.BorrowerDetailVo;
-import com.yang.srb.core.pojo.entity.vo.BorrowerVo;
+import com.yang.srb.core.pojo.vo.BorrowerApprovalVO;
+import com.yang.srb.core.pojo.vo.BorrowerDetailVo;
 import com.yang.srb.core.service.BorrowerService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -16,7 +15,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * <p>
@@ -34,6 +32,13 @@ public class AdminBorrowerController {
 
     @Resource
     private BorrowerService borrowerService;
+
+    @ApiOperation("借款额度审批")
+    @PostMapping("/approval")
+    public R approval(@RequestBody BorrowerApprovalVO borrowerApprovalVO) {
+        borrowerService.approval(borrowerApprovalVO);
+        return R.ok().message("审批完成");
+    }
 
     @ApiOperation("获取借款人信息")
     @GetMapping("/show/{id}")

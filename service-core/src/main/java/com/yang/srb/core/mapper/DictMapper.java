@@ -2,7 +2,7 @@ package com.yang.srb.core.mapper;
 
 import com.yang.srb.core.pojo.entity.Dict;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.yang.srb.core.pojo.entity.dto.ExcelDictDTO;
+import com.yang.srb.core.pojo.dto.ExcelDictDTO;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.yang.srb.core.pojo.entity.vo;
+package com.yang.srb.core.pojo.vo;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

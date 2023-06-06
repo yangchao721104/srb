@@ -11,7 +11,7 @@ import com.yang.srb.core.mapper.UserInfoMapper;
 import com.yang.srb.core.pojo.entity.UserBind;
 import com.yang.srb.core.mapper.UserBindMapper;
 import com.yang.srb.core.pojo.entity.UserInfo;
-import com.yang.srb.core.pojo.entity.vo.UserBindVo;
+import com.yang.srb.core.pojo.vo.UserBindVo;
 import com.yang.srb.core.service.UserBindService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.BeanUtils;

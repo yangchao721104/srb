@@ -1,4 +1,4 @@
-package com.yang.srb.core.pojo.entity.query;
+package com.yang.srb.core.pojo.query;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

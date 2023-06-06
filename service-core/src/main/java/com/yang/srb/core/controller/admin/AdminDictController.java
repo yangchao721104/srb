@@ -5,7 +5,7 @@ import com.yang.common.result.BusinessException;
 import com.yang.common.result.R;
 import com.yang.common.result.ResponseEnum;
 import com.yang.srb.core.pojo.entity.Dict;
-import com.yang.srb.core.pojo.entity.dto.ExcelDictDTO;
+import com.yang.srb.core.pojo.dto.ExcelDictDTO;
 import com.yang.srb.core.service.DictService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

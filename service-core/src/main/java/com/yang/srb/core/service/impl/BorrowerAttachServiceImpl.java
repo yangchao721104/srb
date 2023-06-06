@@ -3,7 +3,7 @@ package com.yang.srb.core.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.yang.srb.core.pojo.entity.BorrowerAttach;
 import com.yang.srb.core.mapper.BorrowerAttachMapper;
-import com.yang.srb.core.pojo.entity.vo.BorrowerAttachVo;
+import com.yang.srb.core.pojo.vo.BorrowerAttachVo;
 import com.yang.srb.core.service.BorrowerAttachService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;

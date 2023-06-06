@@ -2,7 +2,7 @@ package com.yang.srb.core.service;
 
 import com.yang.srb.core.pojo.entity.BorrowerAttach;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.yang.srb.core.pojo.entity.vo.BorrowerAttachVo;
+import com.yang.srb.core.pojo.vo.BorrowerAttachVo;
 
 import java.util.List;
 

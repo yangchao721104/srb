@@ -2,7 +2,7 @@ package com.yang.srb.core.service;
 
 import com.yang.srb.core.pojo.entity.UserBind;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.yang.srb.core.pojo.entity.vo.UserBindVo;
+import com.yang.srb.core.pojo.vo.UserBindVo;
 
 import java.util.Map;
 

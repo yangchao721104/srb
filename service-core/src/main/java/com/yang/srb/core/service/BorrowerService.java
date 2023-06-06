@@ -4,8 +4,9 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yang.srb.core.pojo.entity.Borrower;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.yang.srb.core.pojo.entity.vo.BorrowerDetailVo;
-import com.yang.srb.core.pojo.entity.vo.BorrowerVo;
+import com.yang.srb.core.pojo.vo.BorrowerApprovalVO;
+import com.yang.srb.core.pojo.vo.BorrowerDetailVo;
+import com.yang.srb.core.pojo.vo.BorrowerVo;
 
 /**
  * <p>
@@ -24,4 +25,6 @@ public interface BorrowerService extends IService<Borrower> {
     IPage<Borrower> listPage(Page<Borrower> pageParam, String keyword);
 
     BorrowerDetailVo getBorrowerDetailVoById(Long id);
+
+    void approval(BorrowerApprovalVO borrowerApprovalVO);
 }

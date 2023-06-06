@@ -1,4 +1,4 @@
-package com.yang.srb.core.pojo.entity.vo;
+package com.yang.srb.core.pojo.vo;
 
 import com.yang.srb.core.pojo.entity.BorrowerAttach;
 import io.swagger.annotations.ApiModel;

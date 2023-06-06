@@ -3,7 +3,7 @@ package com.yang.srb.core.controller.api;
 
 import com.yang.common.result.R;
 import com.yang.srb.base.util.JwtUtils;
-import com.yang.srb.core.pojo.entity.vo.BorrowerVo;
+import com.yang.srb.core.pojo.vo.BorrowerVo;
 import com.yang.srb.core.service.BorrowerService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

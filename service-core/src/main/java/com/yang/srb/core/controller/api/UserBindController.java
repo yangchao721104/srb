@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.yang.common.result.R;
 import com.yang.srb.base.util.JwtUtils;
 import com.yang.srb.core.hfb.RequestHelper;
-import com.yang.srb.core.pojo.entity.vo.UserBindVo;
+import com.yang.srb.core.pojo.vo.UserBindVo;
 import com.yang.srb.core.service.UserBindService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.yang.srb.core.listener.ExcelDictDTOLinstener;
 import com.yang.srb.core.pojo.entity.Dict;
 import com.yang.srb.core.mapper.DictMapper;
-import com.yang.srb.core.pojo.entity.dto.ExcelDictDTO;
+import com.yang.srb.core.pojo.dto.ExcelDictDTO;
 import com.yang.srb.core.service.DictService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.extern.slf4j.Slf4j;

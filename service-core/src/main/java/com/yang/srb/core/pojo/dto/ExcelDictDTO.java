@@ -1,4 +1,4 @@
-package com.yang.srb.core.pojo.entity.dto;
+package com.yang.srb.core.pojo.dto;
 
 import com.alibaba.excel.annotation.ExcelProperty;
 import lombok.Data;

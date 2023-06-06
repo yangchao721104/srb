@@ -4,10 +4,10 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yang.srb.core.pojo.entity.UserInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.yang.srb.core.pojo.entity.query.UserInfoQuery;
-import com.yang.srb.core.pojo.entity.vo.LoginVo;
-import com.yang.srb.core.pojo.entity.vo.RegisterVo;
-import com.yang.srb.core.pojo.entity.vo.UserInfoVo;
+import com.yang.srb.core.pojo.query.UserInfoQuery;
+import com.yang.srb.core.pojo.vo.LoginVo;
+import com.yang.srb.core.pojo.vo.RegisterVo;
+import com.yang.srb.core.pojo.vo.UserInfoVo;
 
 /**
  * <p>
