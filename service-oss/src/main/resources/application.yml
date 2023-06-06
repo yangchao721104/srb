@@ -15,7 +15,7 @@ spring:
 aliyun:
   oss:
     endpoint: oss-cn-shanghai.aliyuncs.com
-    keyId: LTAI5tFKwSnzjPKw3BA4b6BZ
+#    keyId: LTAI5tFKwSnzjPKw3BA4b6BZ++++
     keySecret: KX87c8fYGFYsXEIW2YtR5FVgx3ANQ6
     bucketName: 2022-01-13
 
