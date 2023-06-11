@@ -1,6 +1,5 @@
 package com.yang.srb.sms.client;
 
-import com.yang.common.result.R;
 import com.yang.srb.sms.client.fallback.CoreUserInfoClientFallback;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.cloud.openfeign.FeignClient;
