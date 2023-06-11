@@ -20,6 +20,7 @@ import com.yang.srb.core.service.BorrowInfoService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yang.srb.core.service.BorrowerService;
 import com.yang.srb.core.service.DictService;
+import com.yang.srb.core.service.LendService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -50,6 +51,8 @@ public class BorrowInfoServiceImpl extends ServiceImpl<BorrowInfoMapper, BorrowI
     private BorrowerMapper borrowerMapper;
     @Resource
     private BorrowerService borrowerService;
+    @Resource
+    private LendService lendService;
 
     @Override
     public BigDecimal getBorrowAmount(Long userId) {
@@ -167,7 +170,7 @@ public class BorrowInfoServiceImpl extends ServiceImpl<BorrowInfoMapper, BorrowI
         //审核通过则创建标的
         if (borrowInfoApprovalVO.getStatus().intValue() == BorrowInfoStatusEnum.CHECK_OK.getStatus().intValue()) {
             //创建标的
-            //TODO
+            lendService.createLend(borrowInfoApprovalVO,borrowInfo);
         }
     }
 }
