@@ -17,6 +17,12 @@
             <artifactId>service-base</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+        <!--rabbitmq消息队列-->
+        <dependency>
+            <groupId>com.yang</groupId>
+            <artifactId>rabbit-mq</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
 
 <!--        excel-->
         <dependency>

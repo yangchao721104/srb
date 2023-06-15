@@ -15,16 +15,25 @@ import com.yang.common.result.ResponseEnum;
 import com.yang.srb.sms.service.SmsService;
 import com.yang.srb.sms.util.SmsProperties;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 @Service
 @Slf4j
 public class SmsServiceImpl implements SmsService {
+
+    @Resource
+    RedisTemplate redisTemplate;
+
     @Override
     public void send(String mobile, String templateCode, Map<String, Object> param) {
+
+        redisTemplate.opsForValue().set("srb+sms:"+mobile+templateCode,param,30, TimeUnit.MICROSECONDS);
 
         //创建远程连接客户端对象
         DefaultProfile profile = DefaultProfile.getProfile(

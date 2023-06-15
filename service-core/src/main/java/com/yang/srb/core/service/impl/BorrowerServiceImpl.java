@@ -159,13 +159,13 @@ public class BorrowerServiceImpl extends ServiceImpl<BorrowerMapper, Borrower> i
         //获取借款额度申请id
         Long borrowerId = borrowerApprovalVO.getBorrowerId();
 
-        CountDownLatch countDownLatch = new CountDownLatch(1);
+
         //获取借款额度申请对象
         Borrower borrower = baseMapper.selectById(borrowerId);
 
         //设置审核状态
-        baseMapper.updateById(borrower);
         borrower.setStatus(borrowerApprovalVO.getStatus());
+        baseMapper.updateById(borrower);
 
         //获取用户id
         Long userId = borrower.getUserId();

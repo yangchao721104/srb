@@ -8,6 +8,7 @@ import com.yang.common.util.RegexValidateUtils;
 import com.yang.srb.base.util.JwtUtils;
 import com.yang.srb.core.pojo.vo.LoginVo;
 import com.yang.srb.core.pojo.vo.RegisterVo;
+import com.yang.srb.core.pojo.vo.UserIndexVO;
 import com.yang.srb.core.pojo.vo.UserInfoVo;
 import com.yang.srb.core.service.UserInfoService;
 import io.swagger.annotations.Api;
@@ -38,6 +39,15 @@ public class UserInfoController {
     private RedisTemplate redisTemplate;
     @Resource
     private UserInfoService userInfoService;
+
+    @ApiOperation("获取个人空间用户信息")
+    @GetMapping("/auth/getIndexUserInfo")
+    public R getIndexUserInfo(HttpServletRequest request) {
+        String token = request.getHeader("token");
+        Long userId = JwtUtils.getUserId(token);
+        UserIndexVO userIndexVO = userInfoService.getIndexUserInfo(userId);
+        return R.ok().data("userIndexVO", userIndexVO);
+    }
 
     @ApiOperation("校验手机号是否注册")
     @GetMapping("/checkMobile/{mobile}")
